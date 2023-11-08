@@ -1,18 +1,19 @@
 % LaTeX template for Finance summaries
 % Stu Alden
 %----------------------------------------------------------------------------------------
+% Compound Interest
 \documentclass[12pt]{article}
 
 \usepackage{amsmath}
 
 \usepackage{titling}
-\setlength{\droptitle}{-1.5in}  % Don't need all that space!
+\setlength{\droptitle}{-1.75in}  % Don't need all that space!
 
 \usepackage{tikz}
 \usetikzlibrary{decorations.pathmorphing}
 
 
-\title{\normalfont\ 1-A-1 Simple Interest} % The article title
+\title{\normalfont\ 1-B-1 Compound Interest} % The article title
 \author{} % Don't need author
 \date{}  % Suppress date
 \pagenumbering{gobble}  % No page numbers required
@@ -24,39 +25,46 @@
 \vspace{-1in}
 
 \begin{flushleft}
-    \textbf{Simple Interest} is just linear growth in the amount of money.
-    The simple interest rate is the rate of growth over each period.
+    \textbf{Compound Interest} is just \underline{geometric} growth in the amount of money.
+    The compound interest rate is the rate of growth over each period, as a percentage of
+    the amount \underline{at the end of the prior period}.  Each period is sometimes referred-to
+    as a \textbf{conversion} period.
 \end{flushleft}
+\vspace{.1in}
 
 \begin{description}
-    \item\textbf{A} - amount at the beginning, or principal
-    \item\textbf{S} - amount at the end, or final amount
+    \item\textbf{A} - Principal
+    \item\textbf{S} - Final amount
     \item\textbf{i} - interest rate per period expressed as a decimal {(\%/100)}
     \item\textbf{n} - number of periods
 \end{description}
+\vspace{.1in}
 
 \begin{flushleft}
     Then we have
 \end{flushleft}
 
-\vspace{-.5in}
-
 \begin{align*}
-    Amount \: of \: Interest & = I                 \\
-                             & = A \cdot i \cdot n
+    S & = A(1 + i)^n
 \end{align*}
 
 \begin{flushleft}
     and
 \end{flushleft}
 
-\vspace{-.5in}
-
 \begin{align*}
-    S & = A + I     \\
-      & = A(1 + in)
+    A & = \frac{S}{(1 + i)^n} \\
+      & = S(1+i)^{-1}         \\
+      & = Sv^n
 \end{align*}
 
+\begin{flushleft}
+    where
+\end{flushleft}
+
+\begin{align*}
+    v & = \frac{1}{1 + i} = (1+i)^{-1}
+\end{align*}
 \vspace{.25in}
 
 \begin{tikzpicture}
@@ -73,21 +81,17 @@
     %draw nodes
     \draw (0,0) node[below=3pt] {$ 0 $} node[above=3pt] {$ A $};
     \draw (2,0) node[below=3pt] {$ 1 $} node[above=3pt] {$ A(1+i) $};
-    \draw (4,0) node[below=3pt] {$ 2 $} node[above=3pt] {$ A(1+2i) $};
+    \draw (4,0) node[below=3pt] {$ 2 $} node[above=3pt] {$ A(1+i)^2 $};
     \draw (6,0) node[below=3pt] {$  $} node[above=3pt] {$  $};
-    \draw (8,0) node[below=3pt] {$ n - 1 $} node[above=3pt] {$ A(1+(n-1)i) $};
+    \draw (8,0) node[below=3pt] {$ n - 1 $} node[above=3pt] {$ A(1+i)^{n-1} $};
     \draw (10,0) node[below=3pt] {$ n $} node[above=3pt] {$ S $};
-
-    \newline
-    \newline
-
 \end{tikzpicture}
+\vspace{.1in}
 
-\begin{center}
-    {Read this way} {$\Rightarrow$}
-\end{center}
+% \begin{center}
+%     {Read this way} {$\Rightarrow$}
+% \end{center}
 
-%\vspace{.125in} %5mm vertical space
 
 \begin{flushleft}
     \textbf{Notes:} \\
@@ -95,8 +99,9 @@
 
 
 \begin{itemize}
-    \item i is a percentage of the \underline{beginning} amount, but it is credited at the \underline{end} of each period.
-    \item Interest rates are annual and the period is a year unless otherwise stated
+    \item Multiplying by $ (1+i)^t $ (which is $>$ 1) is called \textbf{``accumulating t periods.''}
+    \item Mutiplying by $ v^t $ (which is $<$ 1) is called \textbf{``discounting t periods.''}
+    \item Knowing 3 of the variables $A$, $S$, $n$ and $i$, you can find the fourth variable.
 \end{itemize}
 
 \end{document}
