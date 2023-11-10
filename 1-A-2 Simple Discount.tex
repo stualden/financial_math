@@ -31,15 +31,15 @@
     \item\textbf{A} - amount at the beginning, or "principal" or "proceeds"
     \item\textbf{S} - amount at the end, or "final amount"
     \item\textbf{d} - discount rate \underline{per period}, expressed as a decimal {(\%/100)}
-    \item\textbf{n} - number of periods
+    \item\textbf{n} - number of periods (could be fractional)
 \end{description}
 
+\vspace{.25in}
 \begin{flushleft}
     Then we have
 \end{flushleft}
 
 \vspace{-.25in}
-
 \begin{align*}
     Amount \: of \: Interest & = I                 \\
                              & = S \cdot d \cdot n
@@ -50,49 +50,55 @@
 \end{flushleft}
 
 \vspace{-.25in}
-
 \begin{align*}
     A & = S - I     \\
       & = S - Sdn)  \\
       & = S(1 - dn)
 \end{align*}
 
+\begin{flushleft}
+    or
+\end{flushleft}
+
+\vspace{-.25in}
+\begin{align*}
+    S & = \frac{A}{(1-dn)}
+    %   & = S - Sdn)  \\
+    %   & = S(1 - dn)
+\end{align*}
 \vspace{.25in}
 
-\begin{tikzpicture}
-    %draw horizontal line with squiggle in middle
-    \draw (0,0) -- (3,0);
-    \draw[decorate,decoration={snake,pre length=5mm, post length=5mm}] (3,0) -- (5,0);
-    \draw (5,0) -- (10,0);
+\begin{center}
+    \begin{tikzpicture}
+        %draw horizontal line with squiggle in middle
+        \draw (0,0) -- (3,0);
+        \draw[decorate,decoration={snake,pre length=5mm, post length=5mm}] (3,0) -- (5,0);
+        \draw (5,0) -- (10,0);
 
-    %draw vertical lines
-    \foreach \x in {0,2,6,8,10}
-    \draw (\x cm,3pt) -- (\x cm,-3pt);
+        %draw vertical lines
+        \foreach \x in {0,2,6,8,10}
+        \draw (\x cm,3pt) -- (\x cm,-3pt);
 
-    %    {\tiny Text of first line}
-    %draw nodes
-    \draw (0,0) node[below=3pt] {$ 0 $} node[above=3pt] {$ A $};
-    \draw (2,0) node[below=3pt] {$ 1 $} node[above=3pt] {$ S-(n-1)dS $};
-    \draw (6,0) node[below=3pt] {$ n-2 $} node[above=3pt] {$ S-2dS $};
-    \draw (8,0) node[below=3pt] {$ n-1 $} node[above=3pt] {$ S-dS $};
-    \draw (10,0) node[below=3pt] {$ n $} node[above=3pt] {$ S $};
+        %draw nodes
+        \draw (0,0) node[below=3pt] {$ 0 $} node[above=3pt] {$ A $};
+        \draw (2,0) node[below=3pt] {$ 1 $} node[above=3pt] {$ S-(n-1)dS $};
+        \draw (6,0) node[below=3pt] {$ n-2 $} node[above=3pt] {$ S-2dS $};
+        \draw (8,0) node[below=3pt] {$ n-1 $} node[above=3pt] {$ S-dS $};
+        \draw (10,0) node[below=3pt] {$ n $} node[above=3pt] {$ S $};
 
-    \newline
-    \newline
+        \newline
+        \newline
 
-\end{tikzpicture}
-
+    \end{tikzpicture}
+\end{center}
 \begin{center}
     {$\Leftarrow$}  {Read this way}
 \end{center}
 
 \vspace{.25in}
-
 \begin{flushleft}
     \textbf{Notes:} \\
 \end{flushleft}
-
-
 \begin{itemize}
     \item d is a percentage of the \underline{final} amount S, whereas i (simple interest) is a percentage of the \underline{beginning} amount A
     \item We can think of this as working backward and \underline{subtracting} dS each period.  With simple interest, we work forward and \underline{add} Ai each period

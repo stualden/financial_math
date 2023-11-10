@@ -32,7 +32,7 @@
     \item\textbf{A} - amount at the beginning, or principal
     \item\textbf{S} - amount at the end, or final amount
     \item\textbf{i} - interest rate per period expressed as a decimal {(\%/100)}
-    \item\textbf{n} - number of periods
+    \item\textbf{n} - number of periods (could be fractional)
 \end{description}
 
 \begin{flushleft}
@@ -49,7 +49,6 @@
 \begin{flushleft}
     and
 \end{flushleft}
-
 \vspace{-.5in}
 
 \begin{align*}
@@ -57,31 +56,41 @@
       & = A(1 + in)
 \end{align*}
 
+\begin{flushleft}
+    or
+\end{flushleft}
+
+\begin{align*}
+    A & = \frac{S}{(1+in)}
+    %  & = A(1 + in)
+\end{align*}
 \vspace{.25in}
 
-\begin{tikzpicture}
-    %draw horizontal line with squiggle in middle
-    \draw (0,0) -- (5,0);
-    \draw[decorate,decoration={snake,pre length=5mm, post length=5mm}] (5,0) -- (7,0);
-    \draw (7,0) -- (10,0);
 
-    %draw vertical lines
-    \foreach \x in {0,2,4,8,10}
-    \draw (\x cm,3pt) -- (\x cm,-3pt);
+\begin{center}
+    \begin{tikzpicture}
+        %draw horizontal line with squiggle in middle
+        \draw (0,0) -- (5,0);
+        \draw[decorate,decoration={snake,pre length=5mm, post length=5mm}] (5,0) -- (7,0);
+        \draw (7,0) -- (10,0);
 
-    %    {\tiny Text of first line}
-    %draw nodes
-    \draw (0,0) node[below=3pt] {$ 0 $} node[above=3pt] {$ A $};
-    \draw (2,0) node[below=3pt] {$ 1 $} node[above=3pt] {$ A(1+i) $};
-    \draw (4,0) node[below=3pt] {$ 2 $} node[above=3pt] {$ A(1+2i) $};
-    \draw (6,0) node[below=3pt] {$  $} node[above=3pt] {$  $};
-    \draw (8,0) node[below=3pt] {$ n - 1 $} node[above=3pt] {$ A(1+(n-1)i) $};
-    \draw (10,0) node[below=3pt] {$ n $} node[above=3pt] {$ S $};
+        %draw vertical lines
+        \foreach \x in {0,2,4,8,10}
+        \draw (\x cm,3pt) -- (\x cm,-3pt);
 
-    \newline
-    \newline
+        %draw nodes
+        \draw (0,0) node[below=3pt] {$ 0 $} node[above=3pt] {$ A $};
+        \draw (2,0) node[below=3pt] {$ 1 $} node[above=3pt] {$ A(1+i) $};
+        \draw (4,0) node[below=3pt] {$ 2 $} node[above=3pt] {$ A(1+2i) $};
+        % \draw (6,0) node[below=3pt] {$  $} node[above=3pt] {$  $};
+        \draw (8,0) node[below=3pt] {$ n - 1 $} node[above=3pt] {$ A(1+(n-1)i) $};
+        \draw (10,0) node[below=3pt] {$ n $} node[above=3pt] {$ S $};
 
-\end{tikzpicture}
+        \newline
+        \newline
+
+    \end{tikzpicture}
+\end{center}
 
 \begin{center}
     {Read this way} {$\Rightarrow$}
