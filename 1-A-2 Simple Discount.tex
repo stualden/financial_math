@@ -1,12 +1,20 @@
 % LaTeX template for Finance summaries
 % Stu Alden
+% Simple Discount cheat-sheet
 %----------------------------------------------------------------------------------------
-\documentclass[12pt,letterpaper]{article}
+\documentclass[12pt]{article}
+
+\usepackage[letterpaper,
+            left=1in,
+            right=1in,
+            top=1in,
+            bottom=1in,
+            footskip=.25in]{geometry}
 
 \usepackage{amsmath}
 
 \usepackage{titling}
-\setlength{\droptitle}{-1.5in}
+\setlength{\droptitle}{-1in}
 
 \usepackage{tikz}
 \usetikzlibrary{decorations.pathmorphing}
@@ -19,8 +27,8 @@
 \begin{document}
 
 \maketitle % Print the title/author/date block
-
 \vspace{-1in}
+
 \begin{flushleft}
     \textbf{Simple Discount} is also linear growth, just like Simple Interest.
     They are equivalent concepts, but the terminology and labeling are different.
@@ -62,8 +70,6 @@
 \vspace{-.25in}
 \begin{align*}
     S & = \frac{A}{(1-dn)}
-    %   & = S - Sdn)  \\
-    %   & = S(1 - dn)
 \end{align*}
 \vspace{.25in}
 
@@ -74,11 +80,11 @@
         \draw[decorate,decoration={snake,pre length=5mm, post length=5mm}] (3,0) -- (5,0);
         \draw (5,0) -- (10,0);
 
-        %draw vertical lines
+        %draw vertical tick-marks
         \foreach \x in {0,2,6,8,10}
         \draw (\x cm,3pt) -- (\x cm,-3pt);
 
-        %draw nodes
+        %label the "nodes"
         \draw (0,0) node[below=3pt] {$ 0 $} node[above=3pt] {$ A $};
         \draw (2,0) node[below=3pt] {$ 1 $} node[above=3pt] {$ S-(n-1)dS $};
         \draw (6,0) node[below=3pt] {$ n-2 $} node[above=3pt] {$ S-2dS $};

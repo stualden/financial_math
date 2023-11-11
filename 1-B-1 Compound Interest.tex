@@ -4,19 +4,24 @@
 % Compound Interest
 \documentclass[12pt]{article}
 
-\usepackage{amsmath}
+\usepackage[letterpaper,
+            left=1in,
+            right=1in,
+            top=1in,
+            bottom=1in,
+            footskip=.25in]{geometry}
 
 \usepackage{titling}
-\setlength{\droptitle}{-1.75in}  % Don't need all that space!
-
-\usepackage{tikz}
-\usetikzlibrary{decorations.pathmorphing}
-
-
+\setlength{\droptitle}{-1in}  % Don't need all that space!
 \title{\normalfont\ 1-B-1 Compound Interest} % The article title
 \author{} % Don't need author
 \date{}  % Suppress date
 \pagenumbering{gobble}  % No page numbers required
+
+\usepackage{amsmath}
+
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
 
 \begin{document}
 
@@ -71,25 +76,26 @@
 \end{align*}
 \vspace{.25in}
 
-\begin{tikzpicture}
-    %draw horizontal line with squiggle in middle
-    \draw (0,0) -- (5,0);
-    \draw[decorate,decoration={snake,pre length=5mm, post length=5mm}] (5,0) -- (7,0);
-    \draw (7,0) -- (10,0);
+\begin{center}
+    \begin{tikzpicture}
+        %draw horizontal line with squiggle in middle
+        \draw (0,0) -- (5,0);
+        \draw[decorate,decoration={snake,pre length=5mm, post length=5mm}] (5,0) -- (7,0);
+        \draw (7,0) -- (10,0);
 
-    %draw vertical lines
-    \foreach \x in {0,2,4,8,10}
-    \draw (\x cm,3pt) -- (\x cm,-3pt);
+        %draw vertical tick-marks
+        \foreach \x in {0,2,4,8,10}
+        \draw (\x cm,3pt) -- (\x cm,-3pt);
 
-    %    {\tiny Text of first line}
-    %draw nodes
-    \draw (0,0) node[below=3pt] {$ 0 $} node[above=3pt] {$ A $};
-    \draw (2,0) node[below=3pt] {$ 1 $} node[above=3pt] {$ A(1+i) $};
-    \draw (4,0) node[below=3pt] {$ 2 $} node[above=3pt] {$ A(1+i)^2 $};
-    \draw (6,0) node[below=3pt] {$  $} node[above=3pt] {$  $};
-    \draw (8,0) node[below=3pt] {$ n - 1 $} node[above=3pt] {$ A(1+i)^{n-1} $};
-    \draw (10,0) node[below=3pt] {$ n $} node[above=3pt] {$ S $};
-\end{tikzpicture}
+        %Label "nodes"
+        \draw (0,0) node[below=3pt] {$ 0 $} node[above=3pt] {$ A $};
+        \draw (2,0) node[below=3pt] {$ 1 $} node[above=3pt] {$ A(1+i) $};
+        \draw (4,0) node[below=3pt] {$ 2 $} node[above=3pt] {$ A(1+i)^2 $};
+        \draw (6,0) node[below=3pt] {$  $} node[above=3pt] {$  $};
+        \draw (8,0) node[below=3pt] {$ n - 1 $} node[above=3pt] {$ A(1+i)^{n-1} $};
+        \draw (10,0) node[below=3pt] {$ n $} node[above=3pt] {$ S $};
+    \end{tikzpicture}
+\end{center}
 \vspace{.1in}
 
 % \begin{center}
