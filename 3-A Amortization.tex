@@ -1,7 +1,7 @@
 % LaTeX template for Finance summaries
 % Stu Alden
 %----------------------------------------------------------------------------------------
-% Simple Annuities
+% Amortization
 \documentclass[12pt]{article}
 
 \usepackage[letterpaper,
@@ -13,7 +13,7 @@
 
 \usepackage{titling}
 \setlength{\droptitle}{-1in}  % Don't need all that space!
-\title{\normalfont\ 2-A Simple Annuities} % The article title
+\title{\normalfont\ 3-A Amortization} % The article title
 \author{} % Don't need author
 \date{}  % Suppress date
 \pagenumbering{gobble}  % No page numbers required
@@ -31,17 +31,29 @@
 \vspace{-1.1in}
 
 \begin{flushleft}
-    \textbf{Annuities} are simply a collection of multiple payments, generally (but not always)
-    level amounts that are generally (but not always) equally spaced.  When amounts are level, and
-    the rate period coincides with the payment period, we call them ``simple'' annuities.
+    \textbf{Amortization} in its simplest form is the repayment of a debt in level installments, where
+    each installment covers the full amount of interest that has accrued, plus a portion of the outstanding
+    principal.  An \textbf{amortization schedule} is a table which can be created, showing each payment
+    (the total, the interest portion, and the principal portion) and the outstanding principal immediately after
+    the payment has been made.  If the outstanding principal is needed at any point during the term of
+    the loan, it can be calculated using annuity formulas, either \textit{retrospectively} or
+    \textit{prospectively}, as follows, where $ R $ is the periodic payment and $ n $ is the total
+    number of payments over the life of the loan:
 \end{flushleft}
 
+\begin{align*}
+    Outstanding Principal at time t & = R \cdot \ax{\angln-t i} \\
+\end{align*}
+\vspace{-.2in}
+
+{\Large $ \ax{ \angln i} $} for present value and {\Large $ \sx{ \angln i} $}
+
 \begin{flushleft}
-    The mathematics needed to value them is exactly the same as what we've already seen for compound interest,
-    but when there are many payments, it is usually easier to use a calculator or computer.  There are some
-    computational shortcuts, however, and that is the subject of this section.
+    where {\large $ v = \frac{1}{(1+i)} $ }.
 \end{flushleft}
-\vspace{.05in}
+% \vspace{-.1in}
+\vspace{.1in}
+
 
 \begin{description}
     \item \textbf{R} - Amount of each payment, assumed to be at the \underline{end} of each period
