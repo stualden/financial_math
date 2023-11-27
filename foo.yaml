@@ -1,0 +1,153 @@
+input_boolean:
+  ib_switch_pifi01_timer_enable:
+    name: Timer Enable
+    #initial: on
+    icon: mdi:timer
+  ib_switch_pifi01_timeslot1_enable:
+    name: Time Slot 1 Enable
+    #initial: on
+    icon: mdi:clock-outline
+  ib_switch_pifi01_timeslot2_enable:
+    name: Time Slot 2 Enable
+    #initial: on
+    icon: mdi:clock-outline
+
+input_number:
+  in_switch_pifi01_timer:
+    name: On Timer (mins)
+    #initial: 30
+    min: 1
+    max: 360
+    step: 1
+    mode: box
+    icon: mdi:alarm
+
+input_datetime:
+  id_switch_pifi01_tmeslt1_on:
+    name: Time Slot 1 On Time
+    has_time: true
+    #initial: "09:00:00"
+    icon: mdi:clock-start
+  id_switch_pifi01_tmeslt1_off:
+    name: Time Slot 1 Off Time
+    has_time: true
+    #initial: "10:00:00"
+    icon: mdi:clock-end
+  id_switch_pifi01_tmeslt2_on:
+    name: Time Slot 2 On Time
+    has_time: true
+    #initial: "18:00:00"
+    icon: mdi:clock-start
+  id_switch_pifi01_tmeslt2_off:
+    name: Time Slot 2 Off Time
+    has_time: true
+    #initial: "19:00:00"
+    icon: mdi:clock-end
+
+automation:
+  #name: Switch H1 Off Delay
+  - alias: au_switch_pifi01_offdelay
+    trigger:
+      - platform: state
+        entity_id: switch.fib_fgwpef_wallplug_f01
+        to: "on"
+    condition:
+      - condition: state
+        entity_id: input_boolean.ib_switch_pifi01_timer_enable
+        state: "on"
+    action:
+      - service: script.turn_off
+        entity_id: script.sc_switch_pifi01_timer
+      - service: script.sc_switch_pifi01_timer
+    #radio button (toggle) timer to time slot
+  - alias: au_switch_pifi01_radiob_tmr_to_slot
+    trigger:
+      - platform: state
+        entity_id: input_boolean.ib_switch_pifi01_timer_enable
+        to: "on"
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.ib_switch_pifi01_timeslot1_enable, input_boolean.ib_switch_pifi01_timeslot2_enable
+    #radio button (toggle) time slot to timer
+  - alias: au_switch_pifi01_radiob_slot_to_tmr
+    trigger:
+      - platform: state
+        entity_id: input_boolean.ib_switch_pifi01_timeslot1_enable, input_boolean.ib_switch_pifi01_timeslot2_enable
+        to: "on"
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.ib_switch_pifi01_timer_enable
+    #turning off timer enable cancels timer
+  - alias: au_switch_pifi01_cancel_tmr
+    trigger:
+      - platform: state
+        entity_id: input_boolean.ib_switch_pifi01_timer_enable
+        to: "off"
+    action:
+      - service: script.turn_off
+        entity_id: script.sc_switch_pifi01_timer
+    #time slot 1 on
+  - alias: au_switch_pifi01_ontime1
+    trigger:
+      - platform: template
+        value_template: "{{ states('sensor.time') == states('input_datetime.id_switch_pifi01_tmeslt1_on') [0:5] }}"
+    condition:
+      - condition: state
+        entity_id: input_boolean.ib_switch_pifi01_timeslot1_enable
+        state: "on"
+    action:
+      - service: switch.turn_on
+        entity_id: switch.fib_fgwpef_wallplug_f01
+    #time slot 1 off
+  - alias: au_switch_pifi01_offtime1
+    trigger:
+      - platform: template
+        value_template: "{{ states('sensor.time') == states('input_datetime.id_switch_pifi01_tmeslt1_off') [0:5] }}"
+    condition:
+      - condition: state
+        entity_id: input_boolean.ib_switch_pifi01_timeslot1_enable
+        state: "on"
+    action:
+      - service: switch.turn_off
+        entity_id: switch.fib_fgwpef_wallplug_f01
+    #time slot 2 on
+  - alias: au_switch_pifi01_ontime2
+    trigger:
+      - platform: template
+        value_template: "{{ states('sensor.time') == states('input_datetime.id_switch_pifi01_tmeslt2_on') [0:5] }}"
+    condition:
+      - condition: state
+        entity_id: input_boolean.ib_switch_pifi01_timeslot2_enable
+        state: "on"
+    action:
+      - service: switch.turn_on
+        entity_id: switch.fib_fgwpef_wallplug_f01
+    #time slot 2 off
+  - alias: au_switch_pifi01_offtime2
+    trigger:
+      - platform: template
+        value_template: "{{ states('sensor.time') == states('input_datetime.id_switch_pifi01_tmeslt2_off') [0:5] }}"
+    condition:
+      - condition: state
+        entity_id: input_boolean.ib_switch_pifi01_timeslot2_enable
+        state: "on"
+    action:
+      - service: switch.turn_off
+        entity_id: switch.fib_fgwpef_wallplug_f01
+    #name: Switch Pi-Fi-01 Off Cancels Timer
+  - alias: au_switch_pifi01_offcancelstimer
+    trigger:
+      - platform: state
+        entity_id: switch.fib_fgwpef_wallplug_f01
+        to: "off"
+    action:
+      - service: script.turn_off
+        entity_id: script.sc_switch_pifi01_timer
+
+script:
+  sc_switch_pifi01_timer:
+    alias: Switch Pi-Fi-01 Timer Script
+    sequence:
+      - delay: "00:{{ states('input_number.in_switch_pifi01_timer') | int }}:00"
+      - service: switch.turn_off
+        entity_id: switch.fib_fgwpef_wallplug_f01
