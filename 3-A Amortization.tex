@@ -1,7 +1,7 @@
 % LaTeX template for Finance summaries
 % Stu Alden
-%----------------------------------------------------------------------------------------
 % Amortization
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[12pt]{article}
 
 \usepackage[letterpaper,
@@ -18,61 +18,88 @@
 \date{}  % Suppress date
 \pagenumbering{gobble}  % No page numbers required
 
-\usepackage{amsmath}
-\usepackage{actuarialsymbol}   % for the angle sign on the annuity
+\usepackage{amsmath}  % For general math purposes
+
+\usepackage{actuarialsymbol}   % for the angle sign on the annuity!
+
+\usepackage{booktabs}   % For tables
 
 \usepackage{tikz}
 \usetikzlibrary{decorations.pathmorphing}
 
-\begin{document}
+\begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \maketitle % Print the title/author/date block
-
 \vspace{-1.1in}
 
 \begin{flushleft}
-    \textbf{Amortization} in its simplest form is the repayment of a debt in level installments, where
-    each installment covers the full amount of interest that has accrued, plus a portion of the outstanding
-    principal.  An \textbf{amortization schedule} is a table which can be created, showing each payment
-    (the total, the interest portion, and the principal portion) and the outstanding principal immediately after
-    the payment has been made.  If the outstanding principal is needed at any point during the term of
-    the loan, it can be calculated using annuity formulas, either \textit{retrospectively} or
-    \textit{prospectively}, as follows, where $ R $ is the periodic payment and $ n $ is the total
-    number of payments over the life of the loan:
+    \textbf{Amortization} in its simplest form is the repayment of a debt with level payments ("installments"),
+    where each installment covers the full amount of interest that has accrued, plus a portion of the outstanding
+    principal.  An \textbf{amortization schedule} is a table with a line for each payment (showing the
+    total payment, the interest portion, and the principal portion), and the outstanding principal immediately after
+    that payment has been made.  At the beginning, principal is just $ A $ (present value of the annuity), and at
+    the end, principal goes to 0.  To illustrate:
+\end{flushleft}
+
+\begin{tabular}{@{ } l l  l  l l l @{ }}    % Six column table
+    \toprule
+%    {\bfseries Period}&{\bfseries Starting Principal} &  \qquad \qquad & {\bfseries Sides}&{\bfseries Name} \\
+    {\bfseries       }&{\bfseries Starting }&{\bfseries Payment}&{\bfseries ---}&{\bfseries ---}&{\bfseries Ending} \\
+    {\bfseries Period}&{\bfseries Principal}&{\bfseries Total}&{\bfseries Interest}&{\bfseries Principal}&{\bfseries Principal} \\
+%    \cmidrule(lr){1-2}\cmidrule(lr){4-5}
+    \cmidrule(lr){1-6}
+    1 & \$100.00  & \$31.55 &\$10.00 &\$21.55 &\$78.45 \\
+    2 & \$ 78.45  & \$31.55 &\$ 7.85 &\$24.60 &\$54.75 \\
+    3 & \$ 54.75  & \$31.55 &\$ 5.47 &\$26.08 &\$28.67 \\
+    4 & \$ 28.67  & \$31.55 &\$ 2.87 &\$28.68 &\$ 0.00 \\
+    \bottomrule
+\end{tabular}
+
+\begin{flushleft}
+    If the outstanding principal $ P $ is needed at any point during the term of
+    the loan, it can be calculated using the standard annuity formulas, either \textit{prospectively} or
+    \textit{retrospectively}.  Here, if
+\end{flushleft}
+
+\begin{description}
+    \item\textbf{n, R, i, A} - Defined previously
+    \item\textbf{k    } - Number of periods from beginning, at which to measure outstanding principal (so $ k $ is between 0 and n)
+    \item\textbf{P    } - Outstanding principal immediately after the $ k $th payment
+    \item\textbf{{$ \ax{ \angl{n-k} i} $}} - Present value of the $ n-k $ remaining payments
+    \item\textbf{{$ \sx{ \angl{k} i} $}} - Accumulated Value of $ k $ payments thus far
+\end{description}
+\vspace{.1in}
+
+\begin{flushleft}
+    Then the prospective formula is
+\end{flushleft}
+\vspace{-.2in}
+
+\begin{align*}
+    P & = R \cdot \ax{ \angl{n-k} i} \\
+\end{align*}
+\vspace{-.3in}
+
+\begin{flushleft}
+    and the retrospective formula is
 \end{flushleft}
 
 \begin{align*}
-    Outstanding Principal at time t & = R \cdot \ax{\angln-t i} \\
+    P & = A \cdot (1+i)^k + \sx{ \angl{k} i} \\
 \end{align*}
 \vspace{-.2in}
-
-{\Large $ \ax{ \angln i} $} for present value and {\Large $ \sx{ \angln i} $}
-
-\begin{flushleft}
-    where {\large $ v = \frac{1}{(1+i)} $ }.
-\end{flushleft}
-% \vspace{-.1in}
-\vspace{.1in}
-
-
-\begin{description}
-    \item \textbf{R} - Amount of each payment, assumed to be at the \underline{end} of each period
-    \item\textbf{n} - Number of payments, and also (in the simple case) the number of periods
-    \item\textbf{i} - Compound interest rate \underline{per period} expressed as a decimal {(\%/100)}
-    \item\textbf{S} - Accumulated (or Future) Value of the annuity (value at time n)
-    \item\textbf{A} - Present Value of the annuity (value at time 0)
-\end{description}
-\vspace{.1in}
 
 \begin{center}
     \begin{tikzpicture}
         %draw horizontal line with squiggle in middle
-        \draw (0,0) -- (5,0);
-        \draw[decorate,decoration={snake,pre length=5mm, post length=5mm}] (5,0) -- (7,0);
-        \draw (7,0) -- (10,0);
+        \draw (0,0) -- (3,0);
+        \draw[decorate,decoration={snake,pre length=5mm, post length=5mm}] (3,0) -- (5,0);
+        \draw (5,0) -- (7,0);
+        \draw[decorate,decoration={snake,pre length=5mm, post length=5mm}] (7,0) -- (9,0);
+        \draw (9,0) -- (10,0);
 
         %draw vertical tick-marks
-        \foreach \x in {0,2,4,8,10}
+        \foreach \x in {0,2,6,8,10}
         \draw (\x cm,3pt) -- (\x cm,-3pt);
 
         %Label "nodes"
@@ -80,53 +107,47 @@
         \draw (0,0) node[below=18pt] {$ A $} node[above=3pt] {$  $};
 
         \draw (2,0) node[below=3pt] {$ 1 $} node[above=3pt] {$ R $};
-        \draw (4,0) node[below=3pt] {$ 2 $} node[above=3pt] {$ R $};
-        \draw (6,0) node[below=3pt] {$  $} node[above=3pt] {$  $};
-        \draw (8,0) node[below=3pt] {$ n - 1 $} node[above=3pt] {$ R $};
+%        \draw (4,0) node[below=3pt] {$ 2 $} node[above=3pt] {$ R $};
+        \draw (6,0) node[below=3pt] {$ k $} node[above=3pt] {$ R $};
+        \draw (6,0) node[below=18pt] {$ P $} node[above=3pt] {$  $};
+%        \draw (8,0) node[below=3pt] {$   $} node[above=3pt] {$ R $};
         \draw (10,0) node[below=3pt] {$ n $} node[above=3pt] {$ R $};
-        \draw (10,0) node[below=18pt] {$ S $} node[above=3pt] {$ R $};
+        \draw (10,0) node[below=18pt] {$ 0 $} node[above=3pt] {$ R $};
     \end{tikzpicture}
 \end{center}
 %\vspace{.1in}
 
-\begin{flushleft}
-    Then we have
-\end{flushleft}
-\vspace{-.2in}
+% \begin{flushleft}
+%     Then we have
+% \end{flushleft}
+% \vspace{-.2in}
 
-\begin{align*}
-    S & = R \cdot \frac{(1 + i)^n-1}{i} \\
-\end{align*}
-\vspace{-.2in}
 
-\begin{flushleft}
-    S denotes the ending, or \textbf{accumulated value} of the stream of annuity payments. To value instead
-    the payments at the beginning (denoted \textbf{present value}), we just discount S by n periods, as follows:
-\end{flushleft}
-\vspace{-.1in}
 
-\begin{align*}
-    A & = \frac{S}{(1 + i)^n}      \\\\
-      & = Sv^n                     \\\\
-      & = R \cdot \frac{1 - v^n}{i}
-\end{align*}
-
-%    & = R \cdot \frac{1 - v^n}{i}
-
-\begin{flushleft}
-    where {\large $ v = \frac{1}{(1+i)} $ }.
-\end{flushleft}
+% \begin{flushleft}
+%     S denotes the ending, or \textbf{accumulated value} of the stream of annuity payments. To value instead
+%     the payments at the beginning (denoted \textbf{present value}), we just discount S by n periods, as follows:
+% \end{flushleft}
 % \vspace{-.1in}
-\vspace{.1in}
+
+% \begin{align*}
+%     A & = \frac{S}{(1 + i)^n}       \\\\
+%       & = Sv^n                      \\\\
+%       & = R \cdot \frac{1 - v^n}{i}
+% \end{align*}
+
+% \begin{flushleft}
+%     where {\large $ v = \frac{1}{(1+i)} $ }.
+% \end{flushleft}
+% \vspace{.1in}
 
 \begin{flushleft}
     \textbf{Note:} \\
 \end{flushleft}
 
 \begin{flushleft}
-    When actuaries want to specify the interest rate and the term of the annuity in the notation, they use the symbol
-    {\Large $ \ax{ \angln i} $} for present value and {\Large $ \sx{ \angln i} $} for accumulated or future value, where
-    $ n $ is the number of periods and $ i $ is the rate per period.
+    One reason for distinguishing between principal and interest in loan repayments is that for U.S.
+    federal tax purposes, interest is (potentially) tax deductible, whereas principal is not.
 \end{flushleft}
 
 \end{document}
