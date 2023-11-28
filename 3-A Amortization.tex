@@ -1,7 +1,7 @@
 % LaTeX template for Finance summaries
 % Stu Alden
-%----------------------------------------------------------------------------------------
 % Amortization
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[12pt]{article}
 
 \usepackage[letterpaper,
@@ -19,26 +19,37 @@
 \pagenumbering{gobble}  % No page numbers required
 
 \usepackage{amsmath}
-\usepackage{actuarialsymbol}   % for the angle sign on the annuity
+
+\usepackage{actuarialsymbol}   % for the angle sign on the annuity!
 
 \usepackage{tikz}
 \usetikzlibrary{decorations.pathmorphing}
 
-\begin{document}
+\begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \maketitle % Print the title/author/date block
-
 \vspace{-1.1in}
 
 \begin{flushleft}
-    \textbf{Amortization} in its simplest form is the repayment of a debt in level installments, where
-    each installment covers the full amount of interest that has accrued, plus a portion of the outstanding
-    principal.  An \textbf{amortization schedule} is a table which can be created, showing each payment
-    (the total, the interest portion, and the principal portion) and the outstanding principal immediately after
-    the payment has been made.  If the outstanding principal is needed at any point during the term of
-    the loan, it can be calculated using annuity formulas, either \textit{retrospectively} or
-    \textit{prospectively}, as follows, where $ R $ is the periodic payment and $ n $ is the total
-    number of payments over the life of the loan:
+    \textbf{Amortization} in its simplest form is the repayment of a debt with level payments ("installments"),
+    where each installment covers the full amount of interest that has accrued, plus a portion of the outstanding
+    principal.  An \textbf{amortization schedule} is a table with a line for each payment (showing the
+    total payment, the interest portion, and the principal portion), and the outstanding principal immediately after
+    that payment has been made.  To illustrate:
+\end{flushleft}
+
+\begin{flushleft}
+    where {\large $ v = \frac{1}{(1+i)} $ }.
+\end{flushleft}
+% \vspace{-.1in}
+\vspace{.1in}
+
+\begin{flushleft}
+    If the outstanding principal is needed at any point during the term of
+    the loan, it can be calculated using the standard annuity formulas, either \textit{retrospectively} or
+    \textit{prospectively}.  Here, $ R $ is the periodic payment, $ n $ is the total
+    number of payments over the life of the loan, and $ t $ is the time at which the outstanding
+    principal is measured:
 \end{flushleft}
 
 \begin{align*}
@@ -57,10 +68,10 @@
 
 \begin{description}
     \item \textbf{R} - Amount of each payment, assumed to be at the \underline{end} of each period
-    \item\textbf{n} - Number of payments, and also (in the simple case) the number of periods
-    \item\textbf{i} - Compound interest rate \underline{per period} expressed as a decimal {(\%/100)}
-    \item\textbf{S} - Accumulated (or Future) Value of the annuity (value at time n)
-    \item\textbf{A} - Present Value of the annuity (value at time 0)
+          \item\textbf{n} - Number of payments, and also (in the simple case) the number of periods
+          \item\textbf{i} - Compound interest rate \underline{per period} expressed as a decimal {(\%/100)}
+          \item\textbf{S} - Accumulated (or Future) Value of the annuity (value at time n)
+          \item\textbf{A} - Present Value of the annuity (value at time 0)
 \end{description}
 \vspace{.1in}
 
@@ -106,17 +117,14 @@
 \vspace{-.1in}
 
 \begin{align*}
-    A & = \frac{S}{(1 + i)^n}      \\\\
-      & = Sv^n                     \\\\
+    A & = \frac{S}{(1 + i)^n}       \\\\
+      & = Sv^n                      \\\\
       & = R \cdot \frac{1 - v^n}{i}
 \end{align*}
-
-%    & = R \cdot \frac{1 - v^n}{i}
 
 \begin{flushleft}
     where {\large $ v = \frac{1}{(1+i)} $ }.
 \end{flushleft}
-% \vspace{-.1in}
 \vspace{.1in}
 
 \begin{flushleft}
@@ -124,9 +132,8 @@
 \end{flushleft}
 
 \begin{flushleft}
-    When actuaries want to specify the interest rate and the term of the annuity in the notation, they use the symbol
-    {\Large $ \ax{ \angln i} $} for present value and {\Large $ \sx{ \angln i} $} for accumulated or future value, where
-    $ n $ is the number of periods and $ i $ is the rate per period.
+    One reason for distinguishing between principal and interest in loan repayments is that for U.S.
+    federal tax purposes, interest is (potentially) tax deductible, whereas principal is not.
 \end{flushleft}
 
 \end{document}
