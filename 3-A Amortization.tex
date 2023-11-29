@@ -30,7 +30,7 @@
 \begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \maketitle % Print the title/author/date block
-\vspace{-1.1in}
+\vspace{-1.3in}
 
 \begin{flushleft}
     \textbf{Amortization} in its simplest form is the repayment of a debt with level payments ("installments"),
@@ -38,7 +38,7 @@
     principal.  An \textbf{amortization schedule} is a table with a line for each payment (showing the
     total payment, the interest portion, and the principal portion), and the outstanding principal immediately after
     that payment has been made.  At the beginning, principal is just $ A $ (present value of the annuity), and at
-    the end, principal goes to 0.  To illustrate:
+    the end, principal goes to 0.  To illustrate, using \$100 over 4 periods at 10\% per period:
 \end{flushleft}
 
 \begin{tabular}{@{ } l l  l  l l l @{ }}    % Six column table
@@ -56,7 +56,7 @@
 \end{tabular}
 
 \begin{flushleft}
-    If the outstanding principal $ P $ is needed at any point during the term of
+    If the outstanding principal $ P $ is needed at any point $ k $ during the term of
     the loan, it can be calculated using the standard annuity formulas, either \textit{prospectively} or
     \textit{retrospectively}.  Here, if
 \end{flushleft}
@@ -68,12 +68,12 @@
     \item\textbf{{$ \ax{ \angl{n-k} i} $}} - Present value of the $ n-k $ remaining payments
     \item\textbf{{$ \sx{ \angl{k} i} $}} - Accumulated Value of $ k $ payments thus far
 \end{description}
-\vspace{.1in}
+%\vspace{.1in}
 
 \begin{flushleft}
     Then the prospective formula is
 \end{flushleft}
-\vspace{-.2in}
+\vspace{-.3in}
 
 \begin{align*}
     P & = R \cdot \ax{ \angl{n-k} i} \\
@@ -83,6 +83,7 @@
 \begin{flushleft}
     and the retrospective formula is
 \end{flushleft}
+\vspace{-.3in}
 
 \begin{align*}
     P & = A \cdot (1+i)^k + \sx{ \angl{k} i} \\
@@ -114,12 +115,14 @@
 \end{center}
 
 \begin{flushleft}
-    \textbf{Note:} \\
+    \textbf{Notes:} \\
 \end{flushleft}
 
-\begin{flushleft}
-    One reason for distinguishing between principal and interest in loan repayments is that for U.S.
-    federal tax purposes, interest is (potentially) tax deductible, whereas principal is not.
-\end{flushleft}
+\begin{itemize}
+    \item One reason for distinguishing between principal and interest in loan repayments is that for U.S.
+          federal tax purposes, interest is (potentially) tax deductible, whereas principal is not.
+    \item Knowing outstanding principal is also useful--for example, the market value of a home minus the
+          outstanding principal on a mortgage represents the homeowner's \textbf{equity} in the home.
+\end{itemize}
 
 \end{document}
