@@ -1,0 +1,141 @@
+% LaTeX template for Finance summaries
+% Stu Alden
+%----------------------------------------------------------------------------------------
+% Bonds and Stocks
+\documentclass[12pt]{article}
+
+\usepackage[letterpaper,
+            left=1in,
+            right=1in,
+            top=1in,
+            bottom=1in,
+            footskip=.25in]{geometry}
+
+\usepackage{titling}
+\setlength{\droptitle}{-1in}  % Don't need all that space!
+\title{\normalfont\ 4-A Bonds and Stocks} % The article title
+\author{} % Don't need author
+\date{}  % Suppress date
+\pagenumbering{gobble}  % No page numbers required
+
+\usepackage{amsmath}
+\usepackage{actuarialsymbol}   % for the angle sign on the annuity
+
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
+
+\begin{document}
+
+\maketitle % Print the title/author/date block
+
+\vspace{-1.1in}
+
+\begin{flushleft}
+    We can analyze {stocks} and {bonds} using all of the compound interest techniques we've
+    learned so far:
+\end{flushleft}
+\vspace{.05in}
+
+\begin{itemize}
+    \item A bond (purchased at issue, or later on the seconday market) can be viewed as a combination of
+    \begin{itemize}
+        \item an annuity of coupon payments, plus
+        \item a lump sum payment of the face amount at maturity
+    \end{itemize}
+    \item A stock can be viewed as
+    \begin{itemize}
+        \item an annuity of dividends (if applicable), perhaps varying over time, plus
+        \item the proceeds from the sale of the stock at some future date.
+    \end{itemize}
+\end{itemize}
+
+
+
+% \begin{center}
+%     \begin{tikzpicture}
+%         %draw horizontal line with squiggle in middle
+%         \draw (0,0) -- (5,0);
+%         \draw[decorate,decoration={snake,pre length=5mm, post length=5mm}] (5,0) -- (7,0);
+%         \draw (7,0) -- (10,0);
+
+%         %draw vertical tick-marks
+%         \foreach \x in {0,2,4,8,10}
+%         \draw (\x cm,3pt) -- (\x cm,-3pt);
+
+%         %Label "nodes"
+%         \draw (0,0) node[below=3pt] {$ 0 $} node[above=3pt] {$  $};
+%         \draw (0,0) node[below=18pt] {$ A $} node[above=3pt] {$  $};
+
+%         \draw (2,0) node[below=3pt] {$ 1 $} node[above=3pt] {$ R $};
+%         \draw (4,0) node[below=3pt] {$ 2 $} node[above=3pt] {$ R $};
+%         \draw (6,0) node[below=3pt] {$  $} node[above=3pt] {$  $};
+%         \draw (8,0) node[below=3pt] {$ n - 1 $} node[above=3pt] {$ R $};
+%         \draw (10,0) node[below=3pt] {$ n $} node[above=3pt] {$ R $};
+%         \draw (10,0) node[below=18pt] {$ S $} node[above=3pt] {$ R $};
+%     \end{tikzpicture}
+% \end{center}
+% %\vspace{.1in}
+
+\begin{flushleft}
+    Bond cashflows are generally far more predictable than stock cashflows, but the principles
+    for analysis are the same.  In most cases we either have a desired a yield rate (i) and we are trying
+    to solve for A (the price, namely the present value of the cashflows at the time of purchase) or we know A (The
+    purchase price) and we want to estimate the yield.  Either way, we can use compound interest and
+    the annuity formula.  If
+\end{flushleft}
+\vspace{.25in}
+
+\begin{description}
+    \item \textbf{R} - Amount of each payment (coupon or dividend)
+    \item\textbf{n} - Number of periods until maturity or sale of stock
+    \item\textbf{i} - Compound interest rate
+    \item\textbf{A} - Present Value (purchase price) of the cashflows
+    \item\textbf{M} - Maturity value of bond / sale price of stock
+\end{description}
+\vspace{.25in}
+
+\begin{flushleft}
+    Then
+\end{flushleft}
+
+
+
+% \begin{flushleft}
+%     S denotes the ending, or \textbf{accumulated value} of the stream of annuity payments. To value instead
+%     the payments at the beginning (denoted \textbf{present value}), we just discount S by n periods, as follows:
+% \end{flushleft}
+% \vspace{-.1in}
+
+\begin{align*}
+    % A & = \frac{S}{(1 + i)^n}      \\\\
+    %   & = Sv^n                     \\\\
+    A & = R \cdot \frac{1 - v^n}{i} + M \cdot v^n
+\end{align*}
+
+%    & = R \cdot \frac{1 - v^n}{i}
+
+% \begin{align*}
+%     S & = R \cdot \frac{(1 + i)^n-1}{i} \\
+% \end{align*}
+% \vspace{-.2in}
+\begin{flushleft}
+    where {\large $ v = \frac{1}{(1+i)} $ }.
+\end{flushleft}
+% \vspace{-.1in}
+\vspace{.1in}
+
+\begin{flushleft}
+    \textbf{Note:} \\
+\end{flushleft}
+
+\begin{flushleft}
+    The price calculation (A) is generally straightforward.  The yield calculation, on the other hand,
+    is generally not feasible with direct ("analytic") methods, but is easy to estimate to any
+    required precision with the aid of computers.
+
+    % When actuaries want to specify the interest rate and the term of the annuity in the notation, they use the symbol
+    % {\Large $ \ax{ \angln i} $} for present value and {\Large $ \sx{ \angln i} $} for accumulated or future value, where
+    % $ n $ is the number of periods and $ i $ is the rate per period.
+\end{flushleft}
+
+\end{document}
